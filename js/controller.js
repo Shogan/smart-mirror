@@ -11,7 +11,8 @@
             ComicService,
             GiphyService,
             TrafficService,
-            $scope, $timeout, $interval, tmhDynamicLocale) {
+            solarMeterService,
+            $scope, $timeout, $interval, $log, tmhDynamicLocale) {
         var _this = this;
         var DEFAULT_COMMAND_TEXT = 'Say "What can I say?" to see a list of commands...';
         $scope.listening = false;
@@ -22,6 +23,7 @@
         $scope.interimResult = DEFAULT_COMMAND_TEXT;
 
         $scope.layoutName = 'main';
+        $scope.solarResults = {};
 
         //set lang
         $scope.locale = config.language;
@@ -47,6 +49,18 @@
                 $scope.map = MapService.generateMap(geoposition.coords.latitude+','+geoposition.coords.longitude);
             });
             restCommand();
+
+            
+            solarMeterService.login()
+                .success(function(loginData) { 
+                    console.log('successfully logged into solarMeter Service');
+                    solarMeterService.simpleCsvGet();
+                    $scope.solarResults = solarMeterService.solarStats.result;
+
+                })
+                .error(function (data, status, headers, config) {
+                    $log.warn(data, status, headers(), config);
+                });
 
             var refreshMirrorData = function() {
                 //Get our location and then get the weather for our location

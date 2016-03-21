@@ -31,5 +31,8 @@
     "install": "^0.5.4",
     "npm": "^3.7.5",
     "wiredep": "^3.0.0"
+  },
+  "dependencies": {
+    "babyparse": "^0.4.5"
   }
 }
