@@ -40,7 +40,7 @@ angular.module('SmartMirror').factory('solarMeterService', function ($http) {
 							lastSampleTime: lastSampleT,
 							totalGen: totalGeneration,
 							instantKw: instantaneous,
-							cdSavingsKg: cdSavingsKg
+							cdSavingsKg: cdSavingsKg.toFixed(2)
 						}
 					};
 

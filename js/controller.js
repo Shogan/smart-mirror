@@ -54,15 +54,6 @@
                 $scope.solarResults = results.result;
                 console.log($scope.solarResults);
             };
-            
-            solarMeterService.login()
-                .success(function(loginData) { 
-                    console.log('successfully logged into solarMeter Service');
-                    solarMeterService.simpleCsvGet(solarResultsCb);
-                })
-                .error(function (data, status, headers, config) {
-                    $log.warn(data, status, headers(), config);
-                });
 
             var refreshMirrorData = function() {
                 //Get our location and then get the weather for our location
@@ -99,6 +90,14 @@
                     console.log(error);
                 });
 
+                solarMeterService.login()
+                .success(function(loginData) { 
+                    console.log('successfully logged into solarMeter Service');
+                    solarMeterService.simpleCsvGet(solarResultsCb);
+                })
+                .error(function (data, status, headers, config) {
+                    $log.warn(data, status, headers(), config);
+                });
             };
 
             refreshMirrorData();

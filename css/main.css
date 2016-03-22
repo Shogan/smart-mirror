@@ -143,6 +143,14 @@ ul.calendar {
   margin-top: 10px;
   margin-right: 10px; }
 
+.solar-information {
+  text-align: right;
+  margin-top: 10px;
+  margin-right: 10px; }
+
+.solar-bold {
+  font-weight: bold; }
+
 .time-to {
   font-weight: bold; }
 

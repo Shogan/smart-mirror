@@ -55,16 +55,6 @@
                 </div>
             </li>
         </ul>
-        <br/>
-        <div class="row">
-          <div>
-            <div><span class="fitbit-title">House Solar Generation Stats</span></div>
-            <div><span class="fitbit-item">Stats current as of: {{solarResults.lastSampleTime}}</span></div>
-            <div><span class="fitbit-item">Total power generated: {{solarResults.totalGen}} kWh</span></div>
-            <div><span class="fitbit-item">Current instantaneous power available: {{solarResults.instantKw}} KW</span></div>
-            <div><span class="fitbit-item">The household has saved: {{solarResults.cdSavingsKg}} KG of CO2 emissions</span></div>
-            <p></p>
-        </div>
       </div>
       <div class="top-right">
         <div class="weather">
@@ -96,6 +86,26 @@
           <div ng-show="!traffic.error" class="traffic-information">
             <span class="time-to">Time to {{traffic.destination}}:</span>
             <span>{{traffic.duration.humanize()}}</span>
+          </div>
+        </div>
+        <br/>
+        <div class="solar">
+          <div class="solar-information">
+            <span><img src="http://i.imgur.com/DiMZqfj.png"/></span>
+            <br/>
+            <span class="solar-bold">House Solar Generation Stats</span>
+          </div>
+          <div class="solar-information light-grey">
+            <span>Current as of: {{solarResults.lastSampleTime}}</span>
+          </div>
+          <div class="solar-information light-grey">
+            <span>Total solar generated: {{solarResults.totalGen}} kWh</span>
+          </div>
+          <div class="solar-information light-grey">
+            <span>Instantaneous available: {{solarResults.instantKw}} KW</span>
+          </div>
+          <div class="solar-information light-grey">
+            <span>CO2 savings: {{solarResults.cdSavingsKg}} KG</span>
           </div>
         </div>
       </div>
