@@ -48,6 +48,7 @@ var config = {
       loginUrl: "",
       username: "",
       password: "",
-      csvDownloadUrl: ""
+      csvDownloadUrl: "",
+      carbonFootPrintFactor: 0.5246 // Multiplied to the total generated kWh all time value to work out CO2 savings in KG
     }
 };

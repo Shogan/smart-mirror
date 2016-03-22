@@ -50,13 +50,15 @@
             });
             restCommand();
 
+            var solarResultsCb = function(results){
+                $scope.solarResults = results.result;
+                console.log($scope.solarResults);
+            };
             
             solarMeterService.login()
                 .success(function(loginData) { 
                     console.log('successfully logged into solarMeter Service');
-                    solarMeterService.simpleCsvGet();
-                    $scope.solarResults = solarMeterService.solarStats.result;
-
+                    solarMeterService.simpleCsvGet(solarResultsCb);
                 })
                 .error(function (data, status, headers, config) {
                     $log.warn(data, status, headers(), config);
