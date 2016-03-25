@@ -43,5 +43,12 @@ var config = {
       destination : "", // Destination of your trip. Human readable address.
       name : "work", // Name of your destination ex: "work"
       reload_interval : 5 // Number of minutes the information is refreshed
+    },
+    solarservice: {
+      loginUrl: "",
+      username: "",
+      password: "",
+      csvDownloadUrl: "",
+      carbonFootPrintFactor: 0.5246 // Multiplied to the total generated kWh all time value to work out CO2 savings in KG
     }
 };

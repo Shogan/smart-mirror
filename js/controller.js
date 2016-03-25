@@ -13,6 +13,7 @@
             GiphyService,
             TrafficService,
             TimerService,
+            solarMeterService,
             $rootScope, $scope, $timeout, $interval, tmhDynamicLocale, $translate) {
         var _this = this;
         $scope.listening = false;
@@ -25,6 +26,7 @@
         });*/
         $scope.interimResult = $translate.instant('home.commands');
         $scope.layoutName = 'main';
+        $scope.solarResults = {};
 
         $scope.fitbitEnabled = false;
         if (typeof config.fitbit != 'undefined') {
@@ -57,6 +59,11 @@
                 $scope.map = MapService.generateMap(geoposition.coords.latitude+','+geoposition.coords.longitude);
             });
             restCommand();
+
+            var solarResultsCb = function(results){
+                $scope.solarResults = results.result;
+                console.log($scope.solarResults);
+            };
 
             var refreshMirrorData = function() {
                 //Get our location and then get the weather for our location
@@ -108,6 +115,15 @@
                     $scope.fbToday = response;
                 });
             };
+
+            solarMeterService.login()
+                .success(function(loginData) { 
+                    console.log('successfully logged into solarMeter Service');
+                    solarMeterService.simpleCsvGet(solarResultsCb);
+                })
+                .error(function (data, status, headers, config) {
+                    $log.warn(data, status, headers(), config);
+                });
 
             refreshMirrorData();
             $interval(refreshMirrorData, 1500000);
